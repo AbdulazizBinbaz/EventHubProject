@@ -1,0 +1,186 @@
+﻿@model AppUserVM
+@using EventHub.Utility
+@using System.Security.Claims
+<style>
+    @@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+.breadcrumb {
+    background-color: #c5cee4;
+
+}
+
+.breadcrumb a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1000px;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.d-flex a {
+    text-decoration: none;
+    color: #686868;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.fab.fa-twitter {
+    color: #8ab7f1;
+}
+
+.fab.fa-instagram {
+    color: #E1306C;
+}
+
+.fab.fa-facebook-f {
+    color: #5999ec;
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-12 p-0">
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
+                    <div class="d-flex flex-column align-items-center">
+                        <img class="photo"
+                             src="~/@Model.ApplicationUser.ProfilePictureUrl"
+                             alt="">
+                        <p class="fw-bold h4 mt-3">@Model.ApplicationUser.Name</p>
+                        @if (Model.ApplicationUser.Followers?.Count() is null)
+                        {
+                            <span class="text-dark">Followers : 0</span>
+                        }
+                        else
+                        {
+                            <a asp-action ="FollowersList" asp-route-id="@Model.ApplicationUser.Id"><span class="text-dark">Followers : @Model.ApplicationUser.Followers?.Count()</span></a>
+                        }
+                        @if (Model.ApplicationUser.Following?.Count() is null)
+                        {
+                         <span class="text-dark mb-3">Following : 0</span>
+                        }
+                        else
+                        {
+                            <a asp-action="FollowingList" asp-route-id="@Model.ApplicationUser.Id"><span class="text-dark mb-3">Following :  @Model.ApplicationUser.Following?.Count()</span></a>
+
+                        }
+
+                        @if (User.Identity.ToString() != Model.ApplicationUser.Id)
+                            {
+                                <div class="d-flex ">
+                                    <div class="btn btn-primary follow me-2">Follow</div>
+                                    <div class="btn btn-outline-primary message">Message</div>
+                                </div>
+                            }
+                    </div>
+                </div>
+               <div class="col-12 bg-white p-0 px-2 pb-3 mb-3">
+                   <p>Followed Category</p>
+                   @foreach(var Cat in Model.ApplicationUser.Categories)
+                   {
+                        <div class="d-flex justify-content-between border-bottom py-2 px-3">
+                            <a asp-area="admin" asp-controller="category" asp-action="Details" asp-route-id="@Cat.CategoryId"> @Cat.CategoryName </a>
+                        </div>
+                   }
+                </div>
+                <div class="col-12 bg-white p-0 px-2 pb-3 mb-3">
+                    <a class="btn btn-dark " asp-action="ListCategories" asp-route-UserId="@Model.ApplicationUser.Id"> Manage Followed Categories </a>
+                </div>
+                </div>
+            <div class="col-12 bg-white p-0 px-2 pb-3 mb-3">
+                <p>Attended Events</p>
+                @foreach (var Cat in Model.ApplicationUser.Categories)
+                {
+                    <div class="d-flex justify-content-between border-bottom py-2 px-3">
+                        <a asp-area="admin" asp-controller="category" asp-action="Details" asp-route-id="@Cat.CategoryId"> @Cat.CategoryName </a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-7 ps-md-4">
+            <div class="row">
+                <div class="col-12 bg-white px-3 mb-3 pb-3">
+                    <div class="d-flex align-items-center justify-content-between border-bottom">
+                        <p class="py-2">Full Name</p>
+                        <p class="py-2 text-muted">@Model.ApplicationUser.Name</p>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between border-bottom">
+                        <p class="py-2">Email</p>
+                        <p class="py-2 text-muted">@Model.ApplicationUser.Email</p>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <form method="post" asp-action="UpdateDes">
+                            <input hidden asp-for="ApplicationUser.Id" />
+                            <label>Description</label>
+                            <textarea class="rounded-1 d-flex" asp-for="ApplicationUser.Description" class="form-control" rows="6" cols="70"></textarea>
+                            <br />
+                            <button id="Update" class="btn btn-dark btn-sms" type="submit">Update</button>
+                        </form>
+                        
+                    </div>
+                </div>
+                <div class="col-12 bg-white px-3 pb-2">
+                    <form method="post" asp-action="CreatePost" enctype="multipart/form-data">
+                        <input hidden asp-for="ApplicationUser.Id" />
+                        <input hidden asp-for="Post.UserId" value="@Model.ApplicationUser.Id"/>
+                        <label>New Post</label>
+                        <textarea class="rounded-1 d-flex" asp-for="Post.PostText" class="form-control" rows="6" cols="70"></textarea>
+                        
+                         <label> Post Picture </label>
+                        <input type="file" name="file" id="uploadBox" class="form-control" />
+                        <br />
+                        <button id="Update" class="btn btn-dark align-content-center" type="submit">Create Post</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <div class="col-12 bg-white px-3 pb-2">
+                @if (Model.ApplicationUser.Posts is not null)
+                {
+                    @foreach (var post in Model.ApplicationUser.Posts.OrderByDescending(p => p.Time))
+                    {
+                        <div class="card rounded">
+                            <div class="card-body">
+                                <p>@post.PostText</p>
+                            </div>
+
+                            @if (post.PostImageUrl is not null)
+                            {
+                                <div class="card-img">
+                                    <img src="~/@post.PostImageUrl">
+                                </div>
+                            }
+                        </div>
+                        <br />
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function Display(){
+        document.getElementById('Update').style.visibility = 'show';
+    };
+</script>

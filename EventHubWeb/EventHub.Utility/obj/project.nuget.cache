@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZHY1ut6KF2izL1jIpRxB5JPnzTweg/LIzC8yArLBw5vRbGl+pNXWkE74UDd+EdoczgCSKG5cINXN1fQq+pIzyw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\azizz\\OneDrive\\Desktop\\Grad project\\GradProject\\EventHubWeb\\EventHub.Utility\\EventHub.Utility.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\azizz\\.nuget\\packages\\mailkit\\3.4.3\\mailkit.3.4.3.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.10\\microsoft.aspnetcore.cryptography.internal.6.0.10.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.10\\microsoft.aspnetcore.cryptography.keyderivation.6.0.10.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.10\\microsoft.aspnetcore.identity.ui.6.0.10.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\6.0.0\\microsoft.extensions.fileproviders.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.fileproviders.embedded\\6.0.10\\microsoft.extensions.fileproviders.embedded.6.0.10.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.identity.core\\6.0.10\\microsoft.extensions.identity.core.6.0.10.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.identity.stores\\6.0.10\\microsoft.extensions.identity.stores.6.0.10.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.logging\\6.0.0\\microsoft.extensions.logging.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\mimekit\\3.4.3\\mimekit.3.4.3.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\restsharp\\105.0.1\\restsharp.105.0.1.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\stripe\\1.12.0\\stripe.1.12.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\system.formats.asn1\\6.0.0\\system.formats.asn1.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\system.security.cryptography.pkcs\\6.0.0\\system.security.cryptography.pkcs.6.0.0.nupkg.sha512",
+    "C:\\Users\\azizz\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'RestSharp 105.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "RestSharp",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Stripe 1.12.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Stripe",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}

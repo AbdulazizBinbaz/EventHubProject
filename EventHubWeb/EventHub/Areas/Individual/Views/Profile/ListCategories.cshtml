@@ -1,0 +1,40 @@
+﻿@model AppUserVM
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-9">
+            <h2 class="text-dark">Category List</h2>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Category Id
+            </th>
+            <th>
+                Category Name
+            </th>
+        </tr>
+    </thead>
+    @foreach (var category in Model.categories)
+    {
+        <tr>
+
+            <td>@category.CategoryId</td>
+            <td>@category.CategoryName</td>
+            <td>
+                <div class=" w-100 btn-group " role="group">
+                    @if(Model.ApplicationUser.Categories.Where(u=> u.CategoryId == category.CategoryId).Any())
+                    {
+                        <a class=" btn btn-danger mx-2 " asp-controller="Profile" asp-action="UnFollowCat" asp-route-UserId="@Model.ApplicationUser.Id" asp-route-CatId="@category.CategoryId"> UnFollow </a>
+                    }
+                    else
+                    {
+                        <a class=" btn btn-primary mx-2 " asp-controller="Profile" asp-action="FollowCat" asp-route-UserId="@Model.ApplicationUser.Id" asp-route-CatId="@category.CategoryId"> Follow </a>
+                    }
+                </div>
+            </td>
+        </tr>
+    }
+</table>

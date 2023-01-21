@@ -1,0 +1,69 @@
+﻿
+@model HomepageVM
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-10">
+            <div class="border p-3 mt-4 row">
+    <div class="border p-3 mt-4 ">
+        <div class="row pb-2">
+            <h2 class="text-dark">Create Event</h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label asp-for="Event.EventName"></label>
+            <input asp-for="Event.EventName" class="form-control" />
+            <span asp-validation-for="Event.EventName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Event.EventDescription"></label>
+            <input asp-for="Event.EventDescription" class="form-control" />
+            <span asp-validation-for="Event.EventDescription" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Event.EventLocation"></label>
+            <input asp-for="Event.EventLocation" class="form-control" />
+            <span asp-validation-for="Event.EventLocation" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Event.EventPrice"></label>
+            <input asp-for="Event.EventPrice" class="form-control" />
+            <span asp-validation-for="Event.EventPrice" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Event.EventDate"></label>
+            <input type="date" asp-for="Event.EventDate" class="form-control" />
+            <span asp-validation-for="Event.EventDate" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.FirstSelectedCategoryId"></label>
+            <select asp-for="@Model.FirstSelectedCategoryId" asp-items="@Model.CategoryList" class="form-select">
+            <option disabled selected>--Select Category--</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.SecondSelectedCategoryId"></label>
+            <select asp-for="@Model.SecondSelectedCategoryId" asp-items="@Model.CategoryList" class="form-select">
+            <option disabled selected>--Select Category--</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Event.EventPictureUrl"></label>
+            <input type="file" name="file" id="uploadBox" class="form-control" />
+            <span asp-validation-for="Event.EventPictureUrl" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-controller="Event" asp-action="Index" class="btn btn-secondary">Back To List</a>
+    </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@*client side validation *@
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}

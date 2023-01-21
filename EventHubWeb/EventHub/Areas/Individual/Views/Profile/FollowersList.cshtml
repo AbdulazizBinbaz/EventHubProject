@@ -1,0 +1,22 @@
+﻿@model ApplicationUser
+<div class="container">
+    <ul class="list-group">
+        @foreach (var user in Model.Followers)
+        {
+            <li class="list-group-item">
+                @user.Name
+                @if(Model.Following.Where(u=>u.Id == user.Id).Any())
+                {
+                    <a class="btn btn-danger float-right" asp-action="Unfollow" asp-route-UserId="@user.Id">
+                        Unfollow
+                    </a>
+                } else{
+                    <a class="btn btn-primary float-right" asp-action="follow" asp-route-UserId="@user.Id">
+                        Follow
+                    </a>
+                }
+         
+            </li>
+        }
+    </ul>
+</div>

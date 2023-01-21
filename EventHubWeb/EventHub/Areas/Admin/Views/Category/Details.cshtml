@@ -1,0 +1,21 @@
+﻿@model Category
+@using EventHub.Utility
+<form method="dialog">
+    <div class="border p-3 mt-4 ">
+        <div class="row pb-2">
+            <h2 class="text-dark text-center ">Details</h2>
+            <hr />
+        </div>
+
+        <div asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label asp-for="CategoryId"></label>
+            <input readonly asp-for="CategoryId" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="CategoryName"></label>
+            <input readonly asp-for="CategoryName" class="form-control" />
+        </div>
+        </div>
+    
+</form>

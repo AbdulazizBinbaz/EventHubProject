@@ -1,0 +1,17 @@
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\bin\Debug\net6.0\EventHub.DataAccess.deps.json
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\bin\Debug\net6.0\EventHub.DataAccess.runtimeconfig.json
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\bin\Debug\net6.0\EventHub.DataAccess.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\bin\Debug\net6.0\EventHub.DataAccess.pdb
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\EventHub.DataAccess.csproj.AssemblyReference.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\EventHub.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\EventHub.DataAccess.AssemblyInfoInputs.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\EventHub.DataAccess.AssemblyInfo.cs
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\EventHub.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\EventHub.DataAccess.csproj.CopyComplete
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\EventHub.DataAccess.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\refint\EventHub.DataAccess.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\EventHub.DataAccess.pdb
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\EventHub.DataAccess.genruntimeconfig.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\ref\EventHub.DataAccess.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\bin\Debug\net6.0\EventHub.Models.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\bin\Debug\net6.0\EventHub.Models.pdb

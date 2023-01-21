@@ -1,0 +1,14 @@
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\bin\Debug\net6.0\EventHub.Models.deps.json
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\bin\Debug\net6.0\EventHub.Models.runtimeconfig.json
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\bin\Debug\net6.0\EventHub.Models.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\bin\Debug\net6.0\EventHub.Models.pdb
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\obj\Debug\net6.0\EventHub.Models.csproj.AssemblyReference.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\obj\Debug\net6.0\EventHub.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\obj\Debug\net6.0\EventHub.Models.AssemblyInfoInputs.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\obj\Debug\net6.0\EventHub.Models.AssemblyInfo.cs
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\obj\Debug\net6.0\EventHub.Models.csproj.CoreCompileInputs.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\obj\Debug\net6.0\EventHub.Models.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\obj\Debug\net6.0\refint\EventHub.Models.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\obj\Debug\net6.0\EventHub.Models.pdb
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\obj\Debug\net6.0\EventHub.Models.genruntimeconfig.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\Models\obj\Debug\net6.0\ref\EventHub.Models.dll

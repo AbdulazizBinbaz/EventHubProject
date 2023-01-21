@@ -1,0 +1,26 @@
+﻿@model Category
+<form method="post">
+    <div class="border p-3 mt-4 ">
+        <div class="row pb-2">
+            <h2 class="text-dark">Edit Category</h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <input asp-for="CategoryId" hidden />
+        <div class="mb-3">
+            <label asp-for="CategoryName"></label>
+            <input asp-for="CategoryName" class="form-control" />
+            <span asp-validation-for="CategoryName" class="text-danger"></span>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a asp-controller="Event" asp-action="Index" class="btn btn-secondary">Back To List</a>
+    </div>
+    </div>
+</form>
+
+@*client side validation *@
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}

@@ -1,0 +1,14 @@
+﻿@model ApplicationUser
+<div class="container">
+    <ul class="list-group">
+        @foreach (var user in Model.Following)
+        {
+            <li class="list-group-item">
+                @user.Name
+                <a class="btn btn-danger float-right" asp-action="Unfollow" asp-route-UserId="@user.Id">
+                    Unfollow
+                </a>
+            </li>
+        }
+    </ul>
+</div>

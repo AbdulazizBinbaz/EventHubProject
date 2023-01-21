@@ -1,0 +1,53 @@
+﻿@using Models
+@using EventHub.Utility
+@model IEnumerable<Event>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-9">
+            <h2 class="text-dark">Event List</h2>
+        </div>
+        <div class="col-3">
+            <a asp-controller="Event" asp-action="Create" class="btn btn-dark ">
+                Create New Event &nbsp; <i class="bi bi-plus-circle"></i>
+            </a>
+        </div>
+
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Event Id
+            </th>
+            <th>
+                Event Name
+            </th>
+            <th>
+                Event Manager
+            </th>
+            <th>
+                Event Location
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+    </thead>
+    @foreach (var Event in Model)
+    {
+        <tr>
+            <td>@Event.EventId</td>
+            <td>@Event.EventName</td>
+            <td>@Event.applicationUser.Name</td>
+            <td>@Event.EventLocation</td>
+            <td>@Event.EventStatus</td>
+            <td>
+                <div class=" w-100 btn-group " role="group">
+                        <a class=" btn btn-primary mx-2 " asp-controller="Event" asp-action="Details" asp-route-id="@Event.EventId"> <i class="bi bi-pencil-square"></i> Details </a>
+                        <a class=" btn btn-danger mx-2 " asp-controller="Event" asp-action="Delete" asp-route-id="@Event.EventId"> <i class="bi bi-trash"></i> Delete </a>
+                </div>
+            </td>
+        </tr>
+    }
+</table>

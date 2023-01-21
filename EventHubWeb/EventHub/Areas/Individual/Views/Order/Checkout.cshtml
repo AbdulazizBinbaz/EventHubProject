@@ -1,0 +1,32 @@
+﻿
+@using Microsoft.Extensions.Options
+@inject IOptions<EventHub.Utility.StripeSettings> Stripe
+@{
+    ViewData["Title"] = "Checkout";
+}
+@model OrderVM
+<body>
+    <div class="container mt-5">
+        <h1>Checkout</h1>
+        <form asp-action="Payment" method="post">
+            <div class="form-group">
+                <label asp-for="Event.EventName">Event Name</label>
+                <input asp-for="Event.EventName" disabled>
+            </div>
+            <div class="form-group">
+                <label asp-for="Event.EventDate">Event Date</label>
+                <input asp-for="Event.EventDate" disabled>
+            </div>
+            <div class="form-group">
+                <label asp-for="Event.EventLocation">Event Location</label>
+                <input asp-for="Event.EventLocation" disabled>
+            </div>
+            <div class="form-group">
+                <label asp-for="applicationUser.Name">Application User Name</label>
+                <input asp-for="applicationUser.Name" disabled>
+            </div>
+            <input asp-for="Event.EventId" hidden/>
+            <button type="submit" class="btn btn-lg btn-primary">Pay</button>
+        </form>
+    </div>
+</body>

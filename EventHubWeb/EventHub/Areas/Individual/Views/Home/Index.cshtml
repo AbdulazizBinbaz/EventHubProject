@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+
+}
+@model HomepageVM
+<form asp-action="Search">
+   
+        <p>
+            Search: <input type="text" asp-for="SearchText" />
+            <input type="submit" value="Search" />
+        </p>
+   
+</form>
+<div class="row pb-3">
+    @if(Model.EventList is not null)
+    @foreach (var Event in Model.EventList)
+    {
+        <div class="col-lg-3 col-ms-6">
+            <div class="row p-2">
+                <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
+                    <div class="card-body">
+                        <div class="card">
+                            <img src="@Event.EventPictureUrl" class="card-img-top rounded" style="width:300px; height:340px" />
+                            <div class="pl-1">
+                                <p class="card-title h5 text-primary"> @Event.EventName </p>
+                                <p class="card-title text-info"> @Event.EventLocation</p>
+                                @foreach(var cat in Event.categories)
+                                {
+                                <span class="card-title text-info"> @cat.CategoryName</span>
+                                }
+                            </div>
+                            <div class="pl-1">
+                                <p>Price: <b>$@Event.EventPrice?.ToString("0.00")</b></p>
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Details" class="btn btn-primary" style="width:100%" asp-route-id="@Event.EventId">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<br />
+<h2 class="text-bg-dark" > Latest Posts</h2>
+
+    <div class="row">
+        
+        <div class="col-md-12">
+            @if (Model.PostList is not null)
+            {
+            @foreach (var post in Model.PostList.OrderByDescending(p => p.Time))
+                {
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="card mb-3">
+                                <div class="card-body d-flex">
+                                    @if (post.PostImageUrl is not null)
+                                    {
+                                        <div class="col-2 p-0">
+                                            <img src="~/@post.PostImageUrl" alt="Post image" class="rounded mr-3" style="width: 60px; height: 60px;">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                    <div class="col-2 p-0">
+                                    </div>
+                                    }
+                                    <div class="col-10 p-0">
+                                    <a asp-area="Individual" asp-controller="Profile" asp-action="ProfilePage" asp-route-id="@post.applicationUser.Id"><h5 class="card-title">@post.applicationUser.Name</h5></a>
+                                        <p class="card-text">@post.PostText</p>
+                                        <span>Likes : @post.Likes.Count()
+                                           @if(Model.user is not null)
+                                           {
+                                               @if(!(post.Likes.Where(x=>x.UserId==Model.user.Id).Any()))
+                                                    {
+                                                        <b><a class="btn btn-dark" asp-action="LikePost" asp-route-PostId="@post.PostId">Like</a></b>
+                                                    }
+                                                    else
+                                                    {
+                                                        <b><a class="btn btn-dark" asp-action="UnLikePost" asp-route-PostId="@post.PostId">UnLike</a></b>
+                                                    }
+                                           }
+                                           else
+                                           {
+                                              <b><a class="btn btn-dark" asp-action="LikePost" asp-route-PostId="@post.PostId">Like this post</a></b>
+
+                                           }
+                                    </span>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        
+    </div>
+
+
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <a asp-area="Admin" asp-controller="Event" asp-action="Index">Events</a>
+    <a asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
+    <a asp-area="Individual" asp-controller="Profile" asp-action="Index">Profile</a>
+</div>
