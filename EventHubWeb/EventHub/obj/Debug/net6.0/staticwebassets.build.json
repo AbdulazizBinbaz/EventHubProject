@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OLnRUHOs5zn0941LstmjUzlZOPYTxiWM6ZzYJQkE9Rs=",
+  "Hash": "SssPfwnEvv4vaC3jtveOdFKPiY9P8WJovM0aY8Fq/BI=",
   "Source": "EventHubWeb",
   "BasePath": "_content/EventHubWeb",
   "Mode": "Default",
@@ -2106,23 +2106,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
-    },
-    {
-      "Identity": "C:\\Users\\azizz\\OneDrive\\Desktop\\Grad project\\GradProject\\EventHubWeb\\EventHub\\wwwroot\\uploads\\events\\images\\06f2ae7f-ac3d-4b5b-9146-84ae0826e4b2.png",
-      "SourceId": "EventHubWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\azizz\\OneDrive\\Desktop\\Grad project\\GradProject\\EventHubWeb\\EventHub\\wwwroot\\",
-      "BasePath": "_content/EventHubWeb",
-      "RelativePath": "uploads/events/images/06f2ae7f-ac3d-4b5b-9146-84ae0826e4b2.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\events\\images\\06f2ae7f-ac3d-4b5b-9146-84ae0826e4b2.png"
     },
     {
       "Identity": "C:\\Users\\azizz\\OneDrive\\Desktop\\Grad project\\GradProject\\EventHubWeb\\EventHub\\wwwroot\\uploads\\events\\images\\6deb9445-e911-47d6-8dee-78010a9fb237.jpg",
