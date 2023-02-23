@@ -15,3 +15,5 @@ C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Da
 C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\obj\Debug\net6.0\ref\EventHub.DataAccess.dll
 C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\bin\Debug\net6.0\EventHub.Models.dll
 C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\bin\Debug\net6.0\EventHub.Models.pdb
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\bin\Debug\net6.0\EventHub.Utility.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.DataAccess\bin\Debug\net6.0\EventHub.Utility.pdb

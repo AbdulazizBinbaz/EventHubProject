@@ -66,11 +66,11 @@
         </div>
         <div class="mb-3">
             <label asp-for="EventPictureUrl"></label>
-            <img class="card-img figure-img" src="~/@Model.EventPictureUrl" />
+            <img style="height:500px; width:auto" class="card-img figure-img" src="~/@Model.EventPictureUrl" />
         </div>
         <div class="container-sm">
             <a class="btn-dark btn" asp-action="Edit" asp-route-id="@Model.EventId">Edit</a>
-            <a class="btn btnbtn-dark" asp-action="ListAttendees" asp-route-id="@Model.EventId">See The List of attendes</a>
+            <a class="btn btn-dark" asp-action="ListAttendees" asp-route-id="@Model.EventId">See The List of attendes</a>
             <a class="btn btn-primary" asp-action="Index"> Back To List </a>
         </div>
 

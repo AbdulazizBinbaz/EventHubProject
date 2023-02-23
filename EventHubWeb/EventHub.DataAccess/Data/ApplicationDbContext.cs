@@ -44,12 +44,17 @@ namespace EventHub.DataAccess.Data
                 .HasOne(u => u.User)
                 .WithMany(u => u.EventTickets)
                 .HasForeignKey(u => u.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<EventTicket>()
                 .HasOne(e => e._event)
                 .WithMany(e => e.EventTickets)
                 .HasForeignKey(e => e.EventId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Event>()
+                .HasMany(e => e.EventTickets)
+                .WithOne(e => e._event)
+                .HasForeignKey(e => e.EventId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 

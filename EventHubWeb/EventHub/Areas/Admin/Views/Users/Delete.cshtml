@@ -1,0 +1,28 @@
+﻿@model AppUserVM
+
+<h1>Delete User Profile</h1>
+<form method="post" enctype="multipart/form-data">
+	<input hidden asp-for="ApplicationUser.Id" />
+	<!-- User's name -->
+	<div class="form-group">
+		<label asp-for="ApplicationUser.Name">Name:</label>
+		<input disabled class="form-control" asp-for="ApplicationUser.Name">
+	</div>
+
+	<!-- User's email -->
+	<div class="form-group">
+		<label asp-for="ApplicationUser.Email">Email:</label>
+		<input disabled class="form-control" asp-for="ApplicationUser.Email">
+	</div>
+
+	<!-- User's phone number -->
+	<div class="form-group">
+		<label asp-for="ApplicationUser.PhoneNumber">Phone:</label>
+		<input disabled class="form-control" asp-for="ApplicationUser.PhoneNumber">
+	</div
+	<!-- Submit button -->
+	<button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+
+

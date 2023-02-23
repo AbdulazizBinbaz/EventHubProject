@@ -1,0 +1,204 @@
+﻿@{
+    ViewData["Title"] = "Posts";
+}
+@model HomepageVM
+<h1>Posts</h1>
+<br />
+<form method="get">
+
+    <div class="input-group mb-3">
+        <input class="form-control m-1" type="text" asp-for="SearchText" placeholder="Search" />
+        <button class="btn btn-primary m-1" type="submit" value="Search"> Search </button>
+    </div>
+
+</form>
+@if (Model.FollowedPostList is not null)
+{
+    <br />
+    <h2 class="text-bg-dark">Following Posts</h2>
+    @foreach (var post in Model.FollowedPostList)
+    {
+        @if (post.PostImageUrl is not null)
+        {
+            <div class="container-fluid">
+                <div class="row h-100" style="overflow:hidden;">
+                    <div class="col-sm-12">
+                        <div class="card mb-3" style="min-height:150px; max-height:150px; overflow: hidden;">
+                            <div class="row no-gutters">
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <a asp-area="Individual" asp-controller="Profile" asp-action="ProfilePage" asp-route-id="@post.applicationUser.Id"><h5 class="card-title">@post.applicationUser.Name</h5></a>
+                                        <p class="card-text">@post.PostText</p>
+                                    <span>
+                                        Likes : @post.Likes.Count()
+                                        @if (Model.user is not null)
+                                        {
+                                            @if (!(post.Likes.Where(x => x.UserId == Model.user.Id).Any()))
+                                            {
+                                                    <b><a class="btn btn-dark" asp-action="LikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">Like</a></b>
+                                            }
+                                            else
+                                            {
+                                                    <b><a class="btn btn-dark" asp-action="UnLikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">UnLike</a></b>
+                                            }
+                                        }
+                                        else
+                                        {
+                                                <b><a class="btn btn-dark" asp-action="LikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">Like</a></b>
+
+                                        }
+                                    </span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <img src="~/@post.PostImageUrl" class="card-img rounded" style="height:130px" alt="post image">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="container-fluid">
+                <div class="row h-100" style=" overflow: hidden;">
+                    <div class="col-sm-12">
+                        <div class="card mb-3" style="min-height:150px; max-height:150px; overflow: hidden;">
+                            <div class="row no-gutters">
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <a asp-area="Individual" asp-controller="Profile" asp-action="ProfilePage" asp-route-id="@post.applicationUser.Id"><h5 class="card-title">@post.applicationUser.Name</h5></a>
+                                        <p class="card-text">@post.PostText</p>
+                                    
+                                    <span>
+                                    Likes : @post.Likes.Count()
+                                    @if (Model.user is not null)
+                                    {
+                                        @if (!(post.Likes.Where(x => x.UserId == Model.user.Id).Any()))
+                                        {
+                                                    <b><a class="btn btn-dark" asp-action="LikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">Like</a></b>
+                                        }
+                                        else
+                                        {
+                                                    <b><a class="btn btn-dark" asp-action="UnLikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">UnLike</a></b>
+                                        }
+                                    }
+                                    else
+                                    {
+                                                <b><a class="btn btn-dark" asp-action="LikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">Like</a></b>
+
+                                    }
+                                </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+
+}
+
+
+
+    @if (Model.PostList is not null)
+    {
+        <br />
+    <h2 class="text-bg-dark">Latest Posts</h2>
+
+        @foreach (var post in Model.PostList)
+        {
+            @if (post.PostImageUrl is not null)
+            {
+                <div class="container-fluid">
+                    <div class="row h-100" style="overflow:hidden;">
+                        <div class="col-sm-12">
+                            <div class="card mb-3" style="min-height:150px; max-height:150px; overflow: hidden;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-10">
+                                        <div class="card-body">
+                                            <a asp-area="Individual" asp-controller="Profile" asp-action="ProfilePage" asp-route-id="@post.applicationUser.Id"><h5 class="card-title">@post.applicationUser.Name</h5></a>
+                                            <p class="card-text">@post.PostText</p>
+                                        <span>
+                                            Likes : @post.Likes.Count()
+                                            @if (Model.user is not null)
+                                            {
+                                                @if (!(post.Likes.Where(x => x.UserId == Model.user.Id).Any()))
+                                                {
+                                                    <b><a class="btn btn-dark" asp-action="LikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">Like</a></b>
+                                                }
+                                                else
+                                                {
+                                                    <b><a class="btn btn-dark" asp-action="UnLikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">UnLike</a></b>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <b><a class="btn btn-dark" asp-action="LikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">Like</a></b>
+
+                                            }
+                                        </span>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                    <img src="~/@post.PostImageUrl" class="card-img rounded" style="height:130px" alt="post image">
+                                </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="container-fluid">
+                    <div class="row h-100" style=" overflow: hidden;">
+                        <div class="col-sm-12">
+                            <div class="card mb-3" style="min-height:150px; max-height:150px; overflow: hidden;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-10">
+                                        <div class="card-body">
+                                            <a asp-area="Individual" asp-controller="Profile" asp-action="ProfilePage" asp-route-id="@post.applicationUser.Id"><h5 class="card-title">@post.applicationUser.Name</h5></a>
+                                            <p class="card-text">@post.PostText</p>
+                                        <span>
+                                            Likes : @post.Likes.Count()
+                                            @if (Model.user is not null)
+                                            {
+                                                @if (!(post.Likes.Where(x => x.UserId == Model.user.Id).Any()))
+                                                {
+                                                    <b><a class="btn btn-dark" asp-action="LikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">Like</a></b>
+                                                }
+                                                else
+                                                {
+                                                    <b><a class="btn btn-dark" asp-action="UnLikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">UnLike</a></b>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <b><a class="btn btn-dark" asp-action="LikePost" asp-route-page="Posts" asp-route-PostId="@post.PostId">Like</a></b>
+
+                                            }
+                                        </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+
+    }
+
+

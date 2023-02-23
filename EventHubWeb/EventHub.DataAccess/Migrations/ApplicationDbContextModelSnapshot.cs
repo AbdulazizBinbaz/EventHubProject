@@ -510,13 +510,13 @@ namespace EventHub.DataAccess.Migrations
                     b.HasOne("Models.Event", "_event")
                         .WithMany("EventTickets")
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EventHub.Models.ApplicationUser", "User")
                         .WithMany("EventTickets")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");

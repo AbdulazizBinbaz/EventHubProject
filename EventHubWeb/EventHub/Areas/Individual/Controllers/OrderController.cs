@@ -46,7 +46,7 @@ public class OrderController : Controller
     {
         string payId;
         orderVM.Event = _unitOfWork.Event.GetFirstOrDefault(e => e.EventId == orderVM.Event.EventId);
-        var domain = "https://localhost:7211/";
+        var domain = "http://abdulazizbinbaz-001-site1.atempurl.com/";
         var options = new SessionCreateOptions
         {
             LineItems = new List<SessionLineItemOptions>

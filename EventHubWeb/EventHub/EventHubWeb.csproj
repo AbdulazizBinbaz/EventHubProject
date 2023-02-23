@@ -30,6 +30,7 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\uploads\events\images\" />
+    <Folder Include="wwwroot\uploads\Logo\" />
     <Folder Include="wwwroot\uploads\posts\images\" />
     <Folder Include="wwwroot\uploads\profiles\images\" />
   </ItemGroup>

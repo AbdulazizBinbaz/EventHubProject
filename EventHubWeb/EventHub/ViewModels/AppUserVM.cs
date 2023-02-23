@@ -11,7 +11,7 @@ namespace EventHubWeb.ViewModels
         public IEnumerable<Category> categories { get; set; }
         [ValidateNever]
         public ApplicationUser UserOwner { get; set; }
-
+        [ValidateNever]
         public Post Post { get; set; }
     }
 }

@@ -5,24 +5,27 @@
 
 }
 @model HomepageVM
+<br />
 <form asp-action="Search">
    
-        <p>
-            Search: <input type="text" asp-for="SearchText" />
-            <input type="submit" value="Search" />
-        </p>
+        <div class="input-group mb-3">
+            <input class="form-control m-1" type="text" asp-for="SearchText" placeholder="Search"/>
+            <button class="btn btn-primary m-1" type="submit" value="Search" > Search </button>
+        </div>
    
 </form>
+<br />
+<h2 class="text-bg-dark">Events</h2>
 <div class="row pb-3">
     @if(Model.EventList is not null)
-    @foreach (var Event in Model.EventList)
+    @foreach (var Event in Model.EventList.OrderByDescending(e=>e.EventDate))
     {
         <div class="col-lg-3 col-ms-6">
             <div class="row p-2">
                 <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
                     <div class="card-body">
-                        <div class="card">
-                            <img src="@Event.EventPictureUrl" class="card-img-top rounded" style="width:300px; height:340px" />
+                            <div class="card" style="height:500px">
+                            <img src="@Event.EventPictureUrl" class="card-img-top rounded" style="width:auto; height:300px" />
                             <div class="pl-1">
                                 <p class="card-title h5 text-primary"> @Event.EventName </p>
                                 <p class="card-title text-info"> @Event.EventLocation</p>
@@ -47,7 +50,7 @@
     }
 </div>
 <br />
-<h2 class="text-bg-dark" > Latest Posts</h2>
+<h2 class="text-bg-dark" >Posts</h2>
 
     <div class="row">
         
@@ -79,16 +82,16 @@
                                            {
                                                @if(!(post.Likes.Where(x=>x.UserId==Model.user.Id).Any()))
                                                     {
-                                                        <b><a class="btn btn-dark" asp-action="LikePost" asp-route-PostId="@post.PostId">Like</a></b>
+                                                        <b><a class="btn btn-dark" asp-action="LikePost" asp-route-page="Index" asp-route-PostId="@post.PostId">Like</a></b>
                                                     }
                                                     else
                                                     {
-                                                        <b><a class="btn btn-dark" asp-action="UnLikePost" asp-route-PostId="@post.PostId">UnLike</a></b>
+                                                <b><a class="btn btn-dark" asp-action="UnLikePost" asp-route-page="Index" asp-route-PostId="@post.PostId">UnLike</a></b>
                                                     }
                                            }
                                            else
                                            {
-                                              <b><a class="btn btn-dark" asp-action="LikePost" asp-route-PostId="@post.PostId">Like this post</a></b>
+                                            <b><a class="btn btn-dark" asp-action="LikePost" asp-route-page="Index" asp-route-PostId="@post.PostId">Like</a></b>
 
                                            }
                                     </span>
@@ -100,15 +103,6 @@
                 }
             }
         
+        </div>
     </div>
 
-
-
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <a asp-area="Admin" asp-controller="Event" asp-action="Index">Events</a>
-    <a asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
-    <a asp-area="Individual" asp-controller="Profile" asp-action="Index">Profile</a>
-</div>

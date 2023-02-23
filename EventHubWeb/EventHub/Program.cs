@@ -6,6 +6,7 @@ using EventHub.Utility;
 using BulkyBook.DataAccess.Repository.IRepository;
 using EventHub.DataAccess.Repository;
 using Stripe;
+using EventHub.DataAccess.DbIntializer;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
@@ -18,6 +19,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProvid
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddRazorPages();
 
 
@@ -38,22 +40,24 @@ app.UseStaticFiles();
 app.UseRouting();
 
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
-
+SeedDatabase();
 app.UseAuthentication();
 
 app.MapRazorPages();
 
 app.UseAuthorization();
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllerRoute(
-//      name: "areas",
-//      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-//    );
-//});
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Individual}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var DbIntitalizer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        DbIntitalizer.Initialize();
+    }
+}

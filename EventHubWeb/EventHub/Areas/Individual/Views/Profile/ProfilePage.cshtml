@@ -37,7 +37,6 @@
     img {
         width: 100px;
         height: 100px;
-        border-radius: 50%;
         object-fit: cover;
     }
 
@@ -61,7 +60,7 @@
             <div class="row">
                 <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                     <div class="d-flex flex-column align-items-center">
-                        <img class="photo"
+                        <img class="photo" style=" border-radius: 50%;"
                              src="~/@Model.ApplicationUser.ProfilePictureUrl"
                              alt="">
                         <p class="fw-bold h4 mt-3">@Model.ApplicationUser.Name</p>
@@ -82,6 +81,21 @@
                             <span class="text-dark mb-3">Following :  @Model.ApplicationUser.Following?.Count()</span>
 
                         }
+                        @if(Model.ApplicationUser.EventTickets is not null)
+                        {
+                            <span class="text-dark mb-3">Attended Events :  @Model.ApplicationUser.EventTickets.Count()</span>
+
+                        }
+                        @if(User.IsInRole(SD.Role_Admin))
+                        {
+                            <div>
+                                <a asp-area="Admin" asp-controller="Users" asp-action="Edit" asp-route-id="@Model.ApplicationUser.Id" class="m-1 btn btn-primary text-white">Edit</a>
+                                <a asp-area="Admin" asp-controller="Users" asp-action="Delete" asp-route-id="@Model.ApplicationUser.Id" class="m-1 btn btn-danger text-white">Delete</a>
+
+                            </div>
+
+                        }
+
 
                         <div class="d-flex ">
                                 @if (Model.UserOwner is not null)
@@ -90,19 +104,15 @@
                                     @if (Model.UserOwner.Following.Where(u => u.Id == Model.ApplicationUser.Id).Any())
                                     {
                                         <a asp-action="UnFollow" asp-route-UserId="@Model.ApplicationUser.Id"><div class="btn btn-primary follow me-2">UnFollow</div></a>
-                                        <div class="btn btn-outline-primary message">Message</div>
-
                                     }
                                     else
                                     {
                                         <a asp-action="Follow" asp-route-UserId="@Model.ApplicationUser.Id"><div class="btn btn-primary follow me-2">Follow</div></a>
-                                        <div class="btn btn-outline-primary message">Message</div>
                                     }
                                 }
                             else
                             {
                                 <a asp-action="Follow" asp-route-UserId="@Model.ApplicationUser.Id"><div class="btn btn-primary follow me-2">Follow</div></a>
-                                <div class="btn btn-outline-primary message">Message</div>
                             }
                         </div>
 
@@ -130,53 +140,125 @@
             </div>
         </div>
         <div class="col-12 bg-white p-0 px-2 pb-3 mb-3">
-            <p>Followed Category</p>
+         <p>Followed Category</p>
             <div class="d-flex justify-content-between border-bottom py-2 px-3">
                 <table class="table-bordered rounded ">
 
                     <tr class="rounded">
                         @foreach (var Cat in Model.ApplicationUser.Categories)
                         {
-
                             <a class="rounded-circle bg-black text-light p-4 float-start" asp-area="admin" asp-controller="category" asp-action="Details" asp-route-id="@Cat.CategoryId"> @Cat.CategoryName </a>
-
                         }
                     </tr>
                 </table>
- 
             </div>
-
-
         </div>
         <div class="col-12 bg-white p-0 px-2 pb-3 mb-3">
-            <p>Attended Events</p>
-            @*                @foreach (var Cat in Model.ApplicationUser.Categories)
-            {
+        <p>Attended Events</p>
             <div class="d-flex justify-content-between border-bottom py-2 px-3">
-            <a asp-area="admin" asp-controller="category" asp-action="Details" asp-route-id="@Cat.CategoryId"> @Cat.CategoryName </a>
+                <table class="table-borderless rounded">
+                    <tr class="rounded" >
+                        @if (Model.ApplicationUser.EventTickets is not null)
+                         @foreach (var ticket in Model.ApplicationUser.EventTickets)
+                            {
+                                <a class="rounded-circle bg-black text-light p-4 float-start" asp-area="Individual" asp-controller="Home" asp-action="Details" asp-route-id="@ticket._event.EventId"> @ticket._event.EventName </a>
+                            }
+                    </tr>
+                </table>
             </div>
-            }*@
         </div>
         <div>
             <div class="col-12 bg-white px-3 pb-2">
                 @if (Model.ApplicationUser.Posts is not null)
                 {
-                    @foreach (var post in Model.ApplicationUser.Posts.OrderByDescending(p => p.Time))
+                    @foreach (var post in Model.ApplicationUser.Posts)
                     {
-                        <div class="card rounded">
-                            <div class="card-body">
-                                <p>@post.PostText</p>
-                            </div>
+                        @if (post.PostImageUrl is not null)
+                        {
+                            <div class="container-fluid">
+                                <div class="row h-100" style="overflow:hidden;">
+                                    <div class="col-sm-12">
+                                        <div class="card mb-3" style="min-height:150px; max-height:150px; overflow: hidden;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-10">
+                                                    <div class="card-body">
+                                                        <a asp-area="Individual" asp-controller="Profile" asp-action="ProfilePage" asp-route-id="@post.applicationUser.Id"><h5 class="card-title">@post.applicationUser.Name</h5></a>
+                                                        <p class="card-text">@post.PostText</p>
+                                                        <span>
+                                                            Likes : @post.Likes.Count()
+                                                            @if (Model.UserOwner is not null)
+                                                            {
+                                                                @if (!(post.Likes.Where(x => x.UserId == Model.UserOwner.Id).Any()))
+                                                                {
+                                                                    <b><a class="btn btn-dark" asp-area="Individual" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@post.PostId">Like</a></b>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <b><a class="btn btn-dark" asp-area="Individual" asp-controller="Home" asp-action="UnLikePost" asp-route-PostId="@post.PostId">UnLike</a></b>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <b><a class="btn btn-dark" asp-area="Individual" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@post.PostId">Like</a></b>
 
-                            @if (post.PostImageUrl is not null)
-                            {
-                                <div class="card-img">
-                                    <img src="~/@post.PostImageUrl">
+                                                            }
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <img src="~/@post.PostImageUrl" class="card-img rounded" style="height:130px" alt="post image">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            }
-                        </div>
-                        <br />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="container-fluid">
+                                <div class="row h-100" style=" overflow: hidden;">
+                                    <div class="col-sm-12">
+                                        <div class="card mb-3" style="min-height:150px; max-height:150px; overflow: hidden;">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-10">
+                                                    <div class="card-body">
+                                                        <a asp-area="Individual" asp-controller="Profile" asp-action="ProfilePage" asp-route-id="@post.applicationUser.Id"><h5 class="card-title">@post.applicationUser.Name</h5></a>
+                                                        <p class="card-text">@post.PostText</p>
+
+                                                        <span>
+                                                            Likes : @post.Likes.Count()
+                                                            @if (Model.UserOwner is not null)
+                                                            {
+                                                                @if (!(post.Likes.Where(x => x.UserId == Model.UserOwner.Id).Any()))
+                                                                {
+                                                                    <b><a class="btn btn-dark" asp-area="Individual" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@post.PostId" >Like</a></b>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <b><a class="btn btn-dark" asp-area="Individual" asp-controller="Home" asp-action="UnLikePost" asp-route-PostId="@post.PostId">UnLike</a></b>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <b><a class="btn btn-dark" asp-area="Individual" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@post.PostId">Like</a></b>
+
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
                     }
+
                 }
 
             </div>

@@ -13,6 +13,8 @@ namespace EventHubWeb.ViewModels
         [ValidateNever]
         public IEnumerable<SelectListItem> CategoryList { get; set; }
         [ValidateNever]
+        public IEnumerable<Category> CategoryListForEvent { get; set; }
+        [ValidateNever]
         [Display(Name ="First Category")]
         public int FirstSelectedCategoryId { get; set; }
         [Display(Name = "Second Category")]
@@ -22,8 +24,14 @@ namespace EventHubWeb.ViewModels
         public string? SearchText { get; set; }
         [ValidateNever]
         public IEnumerable<Event>? EventList { get; set; }
+        [ValidateNever]    
+        public IEnumerable<Event>? FollowedCategoryEventList { get; set; }
         [ValidateNever]
-        public IEnumerable<Post>? PostList { get; set; }
+        public IEnumerable<Post>? PostList { get; set; } 
+        [ValidateNever]
+        public IEnumerable<ApplicationUser>? UsersList { get; set; }
+        [ValidateNever]
+        public IEnumerable<Post>? FollowedPostList { get; set; }
         [ValidateNever]
         public Comment? Comment { get; set; }
         public ApplicationUser? user { get; set; }

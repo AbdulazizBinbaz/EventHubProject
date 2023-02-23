@@ -2,6 +2,7 @@
 using EventHub.Models;
 using EventHub.Utility;
 using EventHubWeb.ViewModels;
+using FluentNHibernate.Conventions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +37,7 @@ public class ProfileController : Controller
             var userId = claim.Value;
             AppUserVM AppUserVM = new AppUserVM()
             {
-                ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(i => i.Id == userId.ToString(), includeProperties: "Followers,Following,Categories,Posts"),
+                ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(i => i.Id == userId.ToString(), includeProperties: "Followers,Following,Categories,Posts,Posts.Likes,EventTickets,EventTickets._event"),
                 categories = _unitOfWork.Category.GetAll(includeProperties: "ApplicationUsers"),
             };
             return View(AppUserVM);
@@ -54,24 +55,51 @@ public class ProfileController : Controller
         {
             AppUserVM = new AppUserVM()
             {
-                ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(i => i.Id == userId.ToString(), includeProperties: "Followers,Following,Categories,Posts"),
+                ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(i => i.Id == userId.ToString(), includeProperties: "Followers,Following,Categories,Posts,Posts.Likes,EventTickets,EventTickets._event"),
                 categories = _unitOfWork.Category.GetAll(includeProperties: "ApplicationUsers"),
             };
             return View(AppUserVM);
+        }
+        AppUserVM = new AppUserVM()
+        {
+              ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(i => i.Id == userId.ToString(), includeProperties: "Followers,Following,Categories,Posts,Posts.Likes,EventTickets,EventTickets._event"),
+              categories = _unitOfWork.Category.GetAll(includeProperties: "ApplicationUsers"),
+              UserOwner = _unitOfWork.ApplicationUser.GetFirstOrDefault(u=>u.Id==claim.Value,includeProperties: "Following,Likes")
+        };
+            return View(AppUserVM);
+    }
+    public IActionResult DeletePost(int PostId)
+    {
+        //getting user id 
+        var claimsIdentity = (ClaimsIdentity)User.Identity;
+        var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+        if (claim == null)
+        {
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
 
         }
-
-    
-            AppUserVM = new AppUserVM()
+        var postFromDb = _unitOfWork.Post.GetFirstOrDefault(u => u.PostId == PostId, includeProperties: "Likes,Likes.User");
+        if (postFromDb.PostImageUrl is not null)
+        {
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, postFromDb.PostImageUrl.Trim('\\'));
+            if (System.IO.File.Exists(oldImagePath))
             {
-                ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(i => i.Id == userId.ToString(), includeProperties: "Followers,Following,Categories,Posts"),
-                categories = _unitOfWork.Category.GetAll(includeProperties: "ApplicationUsers"),
-                UserOwner = _unitOfWork.ApplicationUser.GetFirstOrDefault(u=>u.Id==claim.Value,includeProperties:"Following")
-            };
-            return View(AppUserVM);
+                System.IO.File.Delete(oldImagePath);
+            }
+        }
 
-        
+        if(claim.Value == postFromDb.UserId || User.IsInRole(SD.Role_Admin))
+        {
+            var userFromDb = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value, includeProperties: "Likes");
+            postFromDb.Likes.Clear();
+            _unitOfWork.Post.Update(postFromDb);
+            userFromDb.Posts.Remove(postFromDb);
+            _unitOfWork.Post.Remove(postFromDb);
+            _unitOfWork.Save();
+        }
+        return RedirectToAction("Index");
     }
+
     public IActionResult UpdateDes(AppUserVM appUserVM)
     {
         var AppUserFromDb = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == appUserVM.ApplicationUser.Id);
@@ -82,14 +110,12 @@ public class ProfileController : Controller
     }
     public IActionResult FollowingList(string id)
     {
-        var AppUserFromDb = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == id,includeProperties:"Following");
-
+        var AppUserFromDb = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == id,includeProperties: "Following");
         return View(AppUserFromDb);
     }
     public IActionResult FollowersList(string id)
     {
         var AppUserFromDb = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == id,includeProperties: "Followers,Following");
-
         return View(AppUserFromDb);
     }
     [HttpGet]
@@ -133,8 +159,11 @@ public class ProfileController : Controller
     public IActionResult CreatePost(AppUserVM appUserVM,IFormFile? file)
     {
         appUserVM.ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == appUserVM.ApplicationUser.Id);
-        
 
+        if (appUserVM.Post.PostText is null) 
+        {
+            return RedirectToAction("Index");
+        }
         if (ModelState.IsValid)
         {
             if (file is not null)
@@ -167,7 +196,7 @@ public class ProfileController : Controller
         var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
         if(claim is null)
         {
-            return RedirectToAction("ProfilePage", new { id = UserId });
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
         }
         else
         {
@@ -186,7 +215,7 @@ public class ProfileController : Controller
         var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
         if(claim is null)
         {
-            return RedirectToAction("ProfilePage", new { id = UserId });
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
         }
         else
         {

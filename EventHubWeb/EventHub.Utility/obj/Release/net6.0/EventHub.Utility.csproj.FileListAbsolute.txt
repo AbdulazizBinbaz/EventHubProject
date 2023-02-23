@@ -1,0 +1,12 @@
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\bin\Release\net6.0\EventHub.Utility.deps.json
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\bin\Release\net6.0\EventHub.Utility.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\bin\Release\net6.0\EventHub.Utility.pdb
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\obj\Release\net6.0\EventHub.Utility.csproj.AssemblyReference.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\obj\Release\net6.0\EventHub.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\obj\Release\net6.0\EventHub.Utility.AssemblyInfoInputs.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\obj\Release\net6.0\EventHub.Utility.AssemblyInfo.cs
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\obj\Release\net6.0\EventHub.Utility.csproj.CoreCompileInputs.cache
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\obj\Release\net6.0\EventHub.Utility.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\obj\Release\net6.0\refint\EventHub.Utility.dll
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\obj\Release\net6.0\EventHub.Utility.pdb
+C:\Users\azizz\OneDrive\Desktop\Grad project\GradProject\EventHubWeb\EventHub.Utility\obj\Release\net6.0\ref\EventHub.Utility.dll

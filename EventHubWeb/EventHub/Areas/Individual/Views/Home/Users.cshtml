@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Users";
+}
+@model HomepageVM
+
+<h1>Users</h1>
+
+<form asp-action="Users">
+
+    <div class="input-group mb-3">
+        <input class="form-control m-1" type="text" asp-for="SearchText" placeholder="Search" />
+        <button class="btn btn-primary m-1" type="submit" value="Search"> Search </button>
+    </div>
+
+</form>
+
+<div class="row pb-3">
+    @if (Model.UsersList is not null)
+    {
+        <br />
+        foreach (var User in Model.UsersList)
+        {
+            <div class="col-lg-3 col-ms-6 event-card">
+                <div class="row p-2">
+                    <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
+                        <div class="card" style="height:500px">
+                            <img src="~/@User.ProfilePictureUrl" class="card-img-top rounded" style="width:auto; height:380px" />
+                            <div class="card-body">
+
+
+                                <div class="pl-1">
+                                    <p class="card-title h5 text-primary"> @User.Name </p>
+                                    
+                                </div>
+
+                            </div>
+                            <div>
+                                <a asp-controller="Profile" asp-action="ProfilePage" class="btn btn-primary" style="width:100%" asp-route-id="@User.Id">
+                                    Profile Page
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

@@ -177,7 +177,14 @@ namespace EventHub.Areas.Admin.Controllers
         public ActionResult Edit(HomepageVM eventVM, IFormFile? file)
         {
             Event obj = _unitOfWork.Event.GetFirstOrDefault(u => u.EventId == eventVM.Event.EventId, includeProperties: "categories");
-            //------------------------Update Categoryies--------------------------
+            
+            //------------------------Update event name--------------------------
+            obj.EventName = eventVM.Event.EventName;        
+            //------------------------Update event Price--------------------------
+            obj.EventPrice = eventVM.Event.EventPrice; 
+            //------------------------Update description--------------------------
+            obj.EventDescription = eventVM.Event.EventDescription;
+            //------------------------Update Categories--------------------------
             var FirstSelectedCategory = _unitOfWork.Category.GetFirstOrDefault(
                 u => u.CategoryId == eventVM.FirstSelectedCategoryId, includeProperties: "Events");
             var SecondSelectedCategory = _unitOfWork.Category.GetFirstOrDefault(
@@ -207,6 +214,7 @@ namespace EventHub.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
+                obj.EventStatus = SD.EventStatus_WaitingForApproval;
                 _unitOfWork.Event.Update(obj);
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
@@ -215,7 +223,7 @@ namespace EventHub.Areas.Admin.Controllers
 
         }
 
-        // GET: EventController/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         { 
             Event EventFromDb = _unitOfWork.Event.GetFirstOrDefault(u => u.EventId == id, includeProperties: "applicationUser");
@@ -225,8 +233,9 @@ namespace EventHub.Areas.Admin.Controllers
         // POST: EventController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Event obj)
+        public ActionResult Delete(Event obj1)
         {
+            Event obj = _unitOfWork.Event.GetFirstOrDefault(u => u.EventId == obj1.EventId, includeProperties: "EventComments,applicationUser,EventTickets");
             if (User.IsInRole(SD.Role_Admin))
             {
                 if (obj.EventPictureUrl is not null)
@@ -237,6 +246,8 @@ namespace EventHub.Areas.Admin.Controllers
                         System.IO.File.Delete(oldImagePath);
                     }
                 }
+                //obj.EventTickets?.Clear();
+                obj.EventComments?.Clear();
                 _unitOfWork.Event.Remove(obj);
                 _unitOfWork.Save();
             }

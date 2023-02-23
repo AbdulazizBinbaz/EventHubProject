@@ -13,48 +13,45 @@
 <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" style="width:200px;height:auto" asp-area="Individual" asp-controller="Home" asp-action="Index"> <img class="h-25 w-100"  src="~/uploads/Logo/eventhub-high-resolution-logo-white-on-transparent-background.png"  /> </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" asp-area="Individual" asp-controller="Home" asp-action="Index">
                                 Home
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" asp-area="Individual" asp-controller="Home" asp-action="Posts">Posts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link" asp-area="Individual" asp-controller="Home" asp-action="Events" >Events</a>
+                        </li>  
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Individual" asp-controller="Home" asp-action="Users" >Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown button
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <partial name="_LoginPartial" />
-                        </li>
-                    </ul>
-                    <form class="d-flex" asp-area="Individual" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link" asp-area="Individual" asp-controller="Profile" asp-action="Index">Profile Page</a>
+                        </li>  
+                        @if(User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_User_EventManager))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Event" asp-action="Index">Manage Events</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">Manage Categories</a>
+                            </li>
+                        }
+                        </ul>
+                    <partial name="_LoginPartial" />
 
-                        <input class="form-control me-sm-2" type="search" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>

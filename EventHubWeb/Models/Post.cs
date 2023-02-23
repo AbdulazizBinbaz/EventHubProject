@@ -22,6 +22,7 @@ namespace EventHub.Models
         [ValidateNever]
         [ForeignKey("UserId")]
         public ApplicationUser applicationUser { get; set; }
+        [ValidateNever]
         public ICollection<Like> Likes { get; set; }
     }
 }

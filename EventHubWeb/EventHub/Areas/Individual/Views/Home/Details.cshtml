@@ -36,7 +36,7 @@
                                 <div>Price</div>
                             </div>
                             <div class="p-1 col-2 bg-secondary">
-                                <div>@Model.Event.EventPrice.ToString()</div>
+                                <div>@Model.Event.EventPrice.ToString()$</div>
                             </div>
 
                         </div>
@@ -97,7 +97,8 @@
             
             <div class="card rounded">
                 <div class="card-body">
-                    <h1>@comment.User.Name</h1>
+
+                    <h1>@comment.User?.Name</h1>
                     <p>@comment.CommentText</p>
                 </div>
             </div>

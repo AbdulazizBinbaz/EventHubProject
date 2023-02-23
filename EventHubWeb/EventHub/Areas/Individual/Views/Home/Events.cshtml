@@ -1,0 +1,136 @@
+﻿@model HomepageVM
+<br />
+<h1>Events</h1>
+<br />
+<form method="get">
+
+    <div class="input-group mb-3">
+        <input class="form-control m-1" type="text" asp-for="SearchText" placeholder="Search For Name Or Location  " />
+        <button class="btn btn-primary m-1" type="submit" value="Search"> Search </button>
+    </div>
+</form>
+
+
+<nav class="navbar navbar-dark">
+    <select class="form-select" id="categorySelector" onchange="filterEvents()">
+        <option value="all">All Categories</option>
+        @foreach (var category in Model.CategoryListForEvent)
+        {
+            <option value="@category.CategoryName">@category.CategoryName</option>
+        }
+    </select>
+</nav>
+
+<div class="row pb-3">
+    @if (Model.FollowedCategoryEventList is not null)
+    {
+        <br />
+        <h2 class="text-bg-dark"> Followed Categories Events</h2>
+        foreach (var Event in Model.FollowedCategoryEventList)
+        {
+            <div class="col-lg-3 col-ms-6 event-card">
+                <div class="row p-2">
+                    <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
+                        <div class="card-body">
+                            <div class="card" style="height:500px">
+                            <img src="~/@Event.EventPictureUrl" class="card-img-top rounded" style="width:auto; height:300px" />
+                            
+
+
+                                <div class="pl-1">
+                                    <p class="card-title h5 text-primary"> @Event.EventName </p>
+                                    <p class="card-title text-info"> @Event.EventLocation</p>
+                                    @foreach (var cat in Event.categories)
+                                    {
+                                        <span class="card-title text-info EventCategory">@cat.CategoryName</span>
+                                    }
+                                </div>
+                                <div class="pl-1">
+                                    <p>Price: <b>$@Event.EventPrice?.ToString("0.00")</b></p>
+                                </div>
+                            </div>
+                            <div>
+                                <a asp-action="Details" class="btn btn-primary" style="width:100%" asp-route-id="@Event.EventId">
+                                    Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+<br />
+<h2 class="text-bg-dark">Latest Events</h2>
+<div class="row pb-3">
+    @if (Model.EventList is not null)
+    {
+        foreach (var Event in Model.EventList)
+        {
+            <div class="col-lg-3 col-ms-6 event-card">
+                <div class="row p-2">
+                    <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
+                        <div class="card-body">
+                        <div class="card" style="height:500px">
+                            <img src="~/@Event.EventPictureUrl" class="card-img-top rounded" style="width:auto; height:300px" />
+
+
+                                <div class="pl-1">
+                                    <p class="card-title h5 text-primary"> @Event.EventName </p>
+                                    <p class="card-title text-info"> @Event.EventLocation</p>
+                                    @foreach (var cat in Event.categories)
+                                    {
+                                        <span class="card-title text-info EventCategory">@cat.CategoryName</span>
+                                    }
+                                </div>
+                                <div class="pl-1">
+                                    <p>Price: <b>$@Event.EventPrice?.ToString("0.00")</b></p>
+                                </div>     
+                                <div class="pl-1">
+                                    <p>Date: <b>@Event.EventDate.ToShortDateString()</b></p>
+                                </div>
+                            </div>
+                            <div>
+                                <a asp-action="Details" class="btn btn-primary" style="width:100%" asp-route-id="@Event.EventId">
+                                    Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<script>
+    
+    function filterEvents() {
+        var selectedCategory = document.getElementById("categorySelector").value;
+        var events = document.getElementsByClassName("event-card");
+        for (var i = 0; i < events.length; i++) {
+            
+            var event = events[i];
+            var eventCategories = event.querySelectorAll(".EventCategory")
+            console.log(eventCategories.length)
+            for(var j = 0 ; j< eventCategories.length;j++)
+            {
+                
+                if (eventCategories[j].textContent.includes(selectedCategory)) {
+                    event.style.display = "block";
+                    console.log("block")
+                    break;
+                } else {
+                    event.style.display = "none";
+                    console.log("none")
+                }
+            }
+            if (selectedCategory === "all") {
+                event.style.display = "block";
+                console.log("block All")
+
+            }
+        }
+    }
+</script>

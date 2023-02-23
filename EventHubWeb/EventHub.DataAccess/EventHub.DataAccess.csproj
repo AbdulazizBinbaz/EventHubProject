@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EventHub.Utility\EventHub.Utility.csproj" />
     <ProjectReference Include="..\Models\EventHub.Models.csproj" />
   </ItemGroup>
 

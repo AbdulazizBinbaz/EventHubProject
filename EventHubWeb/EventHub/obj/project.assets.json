@@ -4456,6 +4456,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "EventHub.Models": "1.0.0",
+          "EventHub.Utility": "1.0.0",
           "MailKit": "3.4.3",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.10",
           "Microsoft.EntityFrameworkCore": "7.0.0",

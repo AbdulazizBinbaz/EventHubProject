@@ -1,0 +1,38 @@
+﻿@model AppUserVM
+
+<h1>Edit User Profile</h1>
+<form method="post" enctype="multipart/form-data">
+	<input hidden asp-for="ApplicationUser.Id" />
+	<!-- User's name -->
+	<div class="form-group">
+		<label asp-for="ApplicationUser.Name">Name:</label>
+		<input class="form-control" asp-for="ApplicationUser.Name">
+	</div>
+
+	<!-- User's email -->
+	<div class="form-group">
+		<label asp-for="ApplicationUser.Email">Email:</label>
+		<input class="form-control" asp-for="ApplicationUser.Email">
+	</div>
+
+	<!-- User's phone number -->
+	<div class="form-group">
+		<label asp-for="ApplicationUser.PhoneNumber">Phone:</label>
+		<input class="form-control" asp-for="ApplicationUser.PhoneNumber">
+	</div>
+
+	<!-- User's profile picture -->
+	<div class="form-group">
+		<label for="picture">Profile Picture:</label>
+		<div class="custom-file">
+			<input type="file" name="file" id="uploadBox" class="form-control" />
+			<label class="custom-file-label" for="picture">Choose file</label>
+		</div>
+	</div>
+
+	<!-- Submit button -->
+	<button type="submit" class="btn btn-primary">Edit</button>
+</form>
+
+
+
